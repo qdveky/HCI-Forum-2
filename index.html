@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write to TXT File</title>
+</head>
+<body>
+
+<h1>Write to TXT File</h1>
+
+<!-- Input field for the file name -->
+<label for="fileName">File Name:</label>
+<input type="text" id="fileName" placeholder="Enter file name">
+
+<!-- Textarea for user input -->
+<label for="fileContent">File Content:</label>
+<textarea id="fileContent" rows="4" cols="50" placeholder="Enter text content"></textarea>
+
+<!-- Button to trigger file download -->
+<button onclick="downloadTxtFile()">Download TXT File</button>
+
+<script>
+    function downloadTxtFile() {
+        // Get user input for file name and content
+        const fileName = document.getElementById('fileName').value || 'output';
+        const fileContent = document.getElementById('fileContent').value || 'Hello, this is some text content!';
+
+        // Create a Blob with the content
+        const blob = new Blob([fileContent], { type: 'text/plain' });
+
+        // Create a download link
+        const downloadLink = document.createElement('a');
+        downloadLink.href = URL.createObjectURL(blob);
+        downloadLink.download = `${fileName}.txt`;
+
+        // Append the link to the body
+        document.body.appendChild(downloadLink);
+
+        // Trigger the click event to download the file
+        downloadLink.click();
+
+        // Remove the link from the DOM
+        document.body.removeChild(downloadLink);
+    }
+</script>
+
+</body>
+</html>
