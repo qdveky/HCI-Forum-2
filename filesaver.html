@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write to TXT File with FileSaver.js</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+</head>
+<body>
+
+<h1>Write to TXT File with FileSaver.js</h1>
+
+<!-- Input field for the file name -->
+<label for="fileName">File Name:</label>
+<input type="text" id="fileName" placeholder="Enter file name">
+
+<!-- Textarea for user input -->
+<label for="fileContent">File Content:</label>
+<textarea id="fileContent" rows="4" cols="50" placeholder="Enter text content"></textarea>
+
+<!-- Button to trigger file download -->
+<button onclick="downloadTxtFile()">Download TXT File</button>
+
+<script>
+    function downloadTxtFile() {
+        // Sample content to write to the TXT file
+        const content = document.getElementById('fileContent').value || 'Hello, this is some text content!';
+        const filename = document.getElementById('fileName').value || 'output';
+
+        // Create a Blob with the content
+        const blob = new Blob([content], { type: 'text/plain' });
+
+        // Save the file using FileSaver.js
+        saveAs(blob, filename);
+    }
+</script>
+
+</body>
+</html>
